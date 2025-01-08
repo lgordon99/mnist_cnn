@@ -60,10 +60,12 @@ Run the scripts.
 invoke requirements
 ```
 
+2.
 ```
 invoke preprocess-data
 ```
 
+3.
 ```
 invoke train
 ```

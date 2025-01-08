@@ -18,9 +18,11 @@ import typer
 #     def preprocess(self, processed_dir: Path) -> None:
 #         """Preprocess the raw data and save it to the output folder."""
 
+
 def normalize(images: torch.Tensor) -> torch.Tensor:
     """Normalize images."""
     return (images - images.mean()) / images.std()
+
 
 def preprocess(raw_dir: Path, processed_dir: Path) -> None:
     """Process raw data and save it to processed directory."""
@@ -47,6 +49,7 @@ def preprocess(raw_dir: Path, processed_dir: Path) -> None:
     torch.save(test_images, f"{processed_dir}/test_images.pt")
     torch.save(test_target, f"{processed_dir}/test_target.pt")
 
+
 def corrupt_mnist() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
     """Return train and test datasets for corrupt MNIST."""
     train_images = torch.load("data/processed/train_images.pt")
@@ -57,6 +60,7 @@ def corrupt_mnist() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]
     train_set = torch.utils.data.TensorDataset(train_images, train_target)
     test_set = torch.utils.data.TensorDataset(test_images, test_target)
     return train_set, test_set
+
 
 if __name__ == "__main__":
     typer.run(preprocess)
